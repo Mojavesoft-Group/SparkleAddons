@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-misc";
     NAME = "Jameson Miscellany";
     DESCRIPTION = "Miscellaneous patches to make Snap! behave like Jameson.";
-    VERSION = "1.0.0";
+    VERSION = "1.0.1";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
