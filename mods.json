@@ -35,6 +35,13 @@
         "id": "jameson-logo"
     },
     {
+        "version": "1.0.0",
+        "name": "Jameson Miscellany",
+        "description": "Miscellaneous patches to make Snap! behave like Jameson.",
+        "author": "PPPDUD",
+        "id": "jameson-misc"
+    },
+    {
         "version": "1.1_b",
         "name": "Personal Libraries",
         "description": "Create, Import, and Export your own custom libraries! \n (Userscript made by tethrarxitet, expanded by d016. Editing Libraries is UNFINISHED!)",
