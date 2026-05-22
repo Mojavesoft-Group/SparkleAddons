@@ -32,12 +32,7 @@ return class extends Mod {
     main() {
         this.api.disallowSnaps("Jameson");
         this.api.ide.cloudMenu = function() {
-            var menu,
-                world = this.world(),
-                pos = this.controlBar.cloudButton.bottomLeft(),
-                shiftClicked = (world.currentKey === 16);
-
-            this.inform("The Jameson Project", "Cloud functions are not currently supported.")
+        this.inform("The Jameson Project", "Cloud functions are not currently supported.")
         }
     };
 
