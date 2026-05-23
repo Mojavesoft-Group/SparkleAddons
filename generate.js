@@ -7,6 +7,10 @@
 class FakeMod { // Ugh.
     constructor() {}
 }
+
+class FakeColor {
+    constructor() {}
+}
 const {
     compileFunction
 } = require('vm');
@@ -14,7 +18,8 @@ const {
     createContext
 } = require('vm');
 const parsingContext = createContext({
-    Mod: FakeMod
+    Mod: FakeMod,
+    Color: FakeColor
 })
 
 const fs = require('fs');
