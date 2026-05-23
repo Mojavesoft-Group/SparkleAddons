@@ -30,14 +30,14 @@ return class extends Mod {
     DO_MENU = false;
 
     OPTIONS_FORMAT = [
-    "Repository settings",
-    {
-    id: "repoURL",
-    name: "Repository base URL",
-    type: "string",
-    default: "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/",
-  },
-  ];
+        "Repository settings",
+        {
+            id: "repoURL",
+            name: "Repository base URL",
+            type: "string",
+            default: "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/",
+        },
+    ];
 
     main() {
         console.log(this.options.repoURL);
