@@ -1,8 +1,8 @@
 [
     {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "name": "Auto Extension Blocks",
-        "description": "Automatically enalbe the \"Extension blocks\" setting.",
+        "description": "Automatically enable the \"Extension blocks\" setting.",
         "author": "d016",
         "id": "auto-extensions"
     },
