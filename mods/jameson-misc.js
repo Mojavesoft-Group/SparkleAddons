@@ -24,19 +24,22 @@ return class extends Mod {
     ID = "jameson-misc";
     NAME = "Jameson Miscellany";
     DESCRIPTION = "Miscellaneous patches to make Snap! behave like Jameson.";
-    VERSION = "1.0.1";
+    VERSION = "1.1.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
-
+    data = {};
     main() {
         this.api.disallowSnaps("Jameson");
         this.api.ide.cloudMenu = function() {
             this.inform("The Jameson Project", "Cloud functions are not currently supported.")
         }
+        this.data.oldTitle = document.title;
+        document.title = "Jameson 2.0";
     };
 
     cleanupFunc() {
-        // TODO: Add cleanup function.
+        // TODO: Complete cleanFunc() implementation.
+        document.title = this.data.oldTitle;
     }
 }
