@@ -1,8 +1,8 @@
 return class extends Mod {
     ID = "auto-extensions";
     NAME = "Auto Extension Blocks";
-    DESCRIPTION = "Automatically enalbe the \"Extension blocks\" setting.";
-    VERSION = "1.0.0";
+    DESCRIPTION = "Automatically enable the \"Extension blocks\" setting.";
+    VERSION = "1.0.1";
     AUTHOR = "d016";
     DEPENDS = [];
     DO_MENU = false;
