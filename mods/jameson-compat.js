@@ -22,9 +22,9 @@ SOFTWARE.*/
 
 return class extends Mod {
     ID = "jameson-compat";
-    NAME = "Jameson Compatibility";
-    DESCRIPTION = "Patch Snap! and its forks to support Jameson-only primitives.";
-    VERSION = "1.3.0";
+    NAME = "Jameson Primitives";
+    DESCRIPTION = "Extended primitives from the Jameson programming language.";
+    VERSION = "1.4.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -88,8 +88,6 @@ return class extends Mod {
                 newWebSocket.onmessage = function(event) {
                     this.jamesonLastMsg = event.data;
                     this.jamesonMsgChecked = false;
-                    console.log("Message from server ", event.data);
-                    console.log(this);
                 };
                 return newWebSocket;
             }
@@ -160,6 +158,13 @@ return class extends Mod {
                 return window.__crackle__?.isDev ?? false;
             },
         );
+
+        SnapExtensions.primitives.set(
+            "sparkle_addonrepo()",
+            function() {
+                return window.__crackle__?.addonRepoPath ?? "";
+            },
+        );
     }
 
     // Cleanup function - get ran when the mod is "deleted"
@@ -179,5 +184,6 @@ return class extends Mod {
         SnapExtensions.primitives.delete('sparkle_version()');
         SnapExtensions.primitives.delete('sparkle_source()');
         SnapExtensions.primitives.delete('sparkle_isdev()');
+        SnapExtensions.primitives.delete('sparkle_addonrepo()');
     }
 }
