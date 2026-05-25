@@ -24,13 +24,14 @@ return class extends Mod {
     ID = "jameson-logo";
     NAME = "Jameson Logo";
     DESCRIPTION = "Replace the Snap! logo with Jameson's logo.";
-    VERSION = "1.1.1";
+    VERSION = "1.2.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
 
     main() {
         this.api.disallowSnaps("Jameson");
+        this.api.suggestSnaps("Jameson", "Snap");
         this.api.ide.createLogo = function() {
             let old = this.logo;
             this.logo = new Morph();
