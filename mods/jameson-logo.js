@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-logo";
     NAME = "Jameson Logo";
     DESCRIPTION = "Replace the Snap! logo with Jameson's logo.";
-    VERSION = "1.2.0";
+    VERSION = "1.2.1";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -33,13 +33,16 @@ return class extends Mod {
         this.api.disallowSnaps("Jameson");
         this.api.suggestSnaps("Jameson", "Snap");
         this.api.ide.createLogo = function() {
-            let old = this.logo;
+            let oldRenderCachedTexture = this.logo.renderCachedTexture;
+            let oldMouseClickLeft = this.logo.mouseClickLeft;
+            let oldRender = this.logo.render;
+            this.logo.destroy();
             this.logo = new Morph();
             this.logo.texture = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAYCAYAAACBbx+6AAAC5klEQVR4AdSWsY7TQBCGf9OQCkdCQApkCgQFUmho754g1BQgOjoqrkEIIURFdx0FggYhUdAhkSfgnoAIBAUFhiKCJqbhkJDMfOs4bBJ7ndzFxVn+PbszO+N/dsfePaYjdq1KOLe8HDqdjpNlv0aaup17FcIQ1GRHmjyQft/ZV/5i4Prvb0ng620JvLs5I4nPYTEL5jeaCPNS5U+3FB+X4r9T109D1++fkkByotAj80exS4YEXJIkaqBPcm+vSYA2dvTI/J4Eikj1zybCbuY0SWcRosfSImQXZMHoW6bsj5Scjp2M40JiI7nBeQnQZhLQIy3ESncjYRdsShii06iRyRJzCfQvJI5s+iNzUvsmpytgPsHbi187bjXC5u4Fg6hpZjf9ElboqbLMSCaJoofZXDLECGEa8X+sqcIXjYTLF/hOoTbjWZU0nZVRSWBVGQqvJsJVLwkFZLxGP5eH2EeW2wc2w2RHOVgeGdY0EQ5711j56NJf80Y+MjTYWAHae995rodWCEN26+w8ESuV6NwTRZefK+ruFrj6Wm5F5keGe60QZgaHX8IvPqi1FcIsP6SrSNnm4GqXerad0bWp5RJVPr6uFcJJ4L9LDVMygKQcTkr0fWJ17VYIhz4m6pc63n5Z1DO1Hd0v2tjqiJb6JsKcJXyUfkHJrK06Y8FAFcYmwu4gY3VX4VqvooavX1q2l3Xq1y61zD96eXS1ppEwy0vdVbtXa5ndqs2D0cw+CSEZh24dBAn3ej0NriR+vLI8fJ3fxu76HIJcw3tQo9RsKanl8t/sDQs2g4TH47E4bTHLtnT+eRViVXBjkot9qTuXaJDEOsYgYQINP2Ri16IsWEKIA6tHR85v53Z4JzmNR8o+7+G+cTQStu1T3V0ps02UQzmARXwmEeSoReSrj2gl/sH08Sk0m302ETaaAtp+puJ8a2dcqztFd1PZv9QlQ1I33hR2bOhVXM63aG7mWUt4ITwvPggWwhy++w8AAP//y1Y21wAAAAZJREFUAwAZOiJAY+EUjQAAAABJRU5ErkJgggAA";
             this.logo.setExtent(new Point(200, 28));
-            this.logo.render = old.render;
-            this.logo.renderCachedTexture = old.renderCachedTexture;
-            this.logo.mouseClickLeft = old.mouseClickLeft;
+            this.logo.render = oldRender;
+            this.logo.renderCachedTexture = oldRenderCachedTexture;
+            this.logo.mouseClickLeft = oldMouseClickLeft;
             this.add(this.logo);
         }
         this.api.ide.buildPanes();
