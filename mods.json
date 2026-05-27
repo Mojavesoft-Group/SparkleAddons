@@ -21,6 +21,13 @@
         "id": "better-flat-design"
     },
     {
+        "version": "1.0.0",
+        "name": "Custom Repositories",
+        "description": "Configure a custom addon repository in Sparkle.",
+        "author": "PPPDUD",
+        "id": "custom-repos"
+    },
+    {
         "version": "1.4.0",
         "name": "Jameson Primitives",
         "description": "Extended primitives from the Jameson programming language.",
