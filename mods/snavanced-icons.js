@@ -10,7 +10,7 @@ return class extends Mod {
     NAME = "Snavanced! Icon Theme"; // human-readable name
     DESCRIPTION = "Change Snap!'s icons to look more like Snavanced!."; // description
     VERSION = "1.0.0"; // version
-    AUTHOR = "PPPDUD"; // author
+    AUTHOR = "PPPDUD (feat. Alessandrito123)"; // author
     DEPENDS = []; // dependencies (addon ids, useful for libraries)
     DO_MENU = false; // whether to add a menu item
 
@@ -125,13 +125,13 @@ return class extends Mod {
             var w = this.symbolWidth() / 3;
 
             ctx.strokeStyle = color.toString();
-            ctx.lineWidth = Math.max(w / 20, 0.5) * 2;
+            ctx.lineWidth = Math.max(w / 20, 1/2) * 3;
             ctx.lineCap = 'round';
-            ctx.lineJoin = 'miter';
+            ctx.lineJoin = 'round';
             ctx.beginPath();
-            ctx.moveTo(0.5 * w, 1.5 * w);
-            ctx.lineTo(1.5 * w, 2.5 * w);
-            ctx.lineTo(2.5 * w, 0.5 * w);
+            ctx.moveTo(w * 3/4, w * 2);
+            ctx.lineTo(w * 5/4, w * 5/2);
+            ctx.lineTo(w * 9/4, w / 2);
             ctx.stroke();
         }, true);
         this.api.world.rerender();
