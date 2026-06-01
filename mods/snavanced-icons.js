@@ -125,13 +125,13 @@ return class extends Mod {
             var w = this.symbolWidth() / 3;
 
             ctx.strokeStyle = color.toString();
-            ctx.lineWidth = Math.max(w / 20, 1/2) * 3;
+            ctx.lineWidth = Math.max(w / 20, 1 / 2) * 3;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
             ctx.beginPath();
-            ctx.moveTo(w * 3/4, w * 2);
-            ctx.lineTo(w * 5/4, w * 5/2);
-            ctx.lineTo(w * 9/4, w / 2);
+            ctx.moveTo(w * 3 / 4, w * 2);
+            ctx.lineTo(w * 5 / 4, w * 5 / 2);
+            ctx.lineTo(w * 9 / 4, w / 2);
             ctx.stroke();
         }, true);
         this.api.world.rerender();
