@@ -176,7 +176,150 @@ return class extends Mod {
             ctx.lineTo(inset, h - inset);
         }
         ReporterBlockMorph.prototype.drawEdgesObject = function (ctx) {
-            
+            // add 3D-Effect
+            var w = this.width(),
+                h = this.height(),
+                h2 = Math.floor(h / 2),
+                r = this.rounding,
+                shift = this.edge / 2,
+                cslots = this.cSlots(),
+                top = this.top(),
+                y,
+                gradient;
+
+            ctx.lineWidth = this.edge;
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+
+            // half-tone edges
+            // bottom left corner
+            gradient = ctx.createLinearGradient(
+                r,
+                0,
+                -r,
+                0
+            );
+            gradient.addColorStop(1, this.cachedClr);
+            gradient.addColorStop(0, this.cachedClrBright);
+            ctx.strokeStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(r, h2);
+            ctx.lineTo(shift, h - shift);
+            ctx.closePath();
+            ctx.stroke();
+
+            // normal gradient edges
+            // top edge: left corner
+            gradient = ctx.createLinearGradient(
+                r,
+                0,
+                0,
+                0
+            );
+            gradient.addColorStop(0, this.cachedClrBright);
+            gradient.addColorStop(1, this.cachedClr);
+            ctx.strokeStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(r, h2);
+            ctx.lineTo(shift, shift);
+            ctx.closePath();
+            ctx.stroke();
+
+            // top edge: straight line
+            gradient = ctx.createLinearGradient(
+                0,
+                0,
+                0,
+                this.edge
+            );
+            gradient.addColorStop(0, this.cachedClrBright);
+            gradient.addColorStop(1, this.cachedClr);
+            ctx.strokeStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(shift, shift);
+
+            // right edge
+            if (cslots.length) {
+                // end of top edge
+                ctx.lineTo(w - r - shift, shift);
+                ctx.closePath();
+                ctx.stroke();
+
+                // right vertical edge
+                gradient = ctx.createLinearGradient(w - r - this.edge, 0, w - r, 0);
+                gradient.addColorStop(0, this.cachedClr);
+                gradient.addColorStop(1, this.cachedClrDark);
+
+                ctx.lineWidth = this.edge;
+                ctx.lineJoin = 'round';
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = gradient;
+
+                ctx.beginPath();
+                ctx.moveTo(w - r - shift, this.edge + shift);
+                cslots.forEach(slot => {
+                    y = slot.top() - top;
+                    ctx.lineTo(w - r - shift, y);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(w - r - shift, y + slot.height());
+                });
+                ctx.lineTo(w - r - shift, h - shift);
+                ctx.stroke();
+            } else {
+                // end of top edge
+                ctx.lineTo(w - r, shift);
+                ctx.closePath();
+                ctx.stroke();
+
+                // top diagonal slope right
+                gradient = ctx.createLinearGradient(
+                    w - r,
+                    0,
+                    w + r,
+                    0
+                );
+                gradient.addColorStop(0, this.cachedClr);
+                gradient.addColorStop(1, this.cachedClrDark);
+                ctx.strokeStyle = gradient;
+                ctx.beginPath();
+                ctx.moveTo(w - shift, h2);
+                ctx.lineTo(w - r, shift);
+                ctx.closePath();
+                ctx.stroke();
+
+                // bottom diagonal slope right
+                gradient = ctx.createLinearGradient(
+                    w - r,
+                    0,
+                    w,
+                    0
+                );
+                gradient.addColorStop(0, this.cachedClr);
+                gradient.addColorStop(1, this.cachedClrDark);
+                ctx.strokeStyle = gradient;
+                ctx.beginPath();
+                ctx.moveTo(w - r, h - shift);
+                ctx.lineTo(w - shift, h2);
+                ctx.closePath();
+                ctx.stroke();
+            }
+
+            // bottom edge: straight line
+            gradient = ctx.createLinearGradient(
+                0,
+                h - this.edge,
+                0,
+                h
+            );
+            gradient.addColorStop(0, this.cachedClr);
+            gradient.addColorStop(1, this.cachedClrDark);
+            ctx.strokeStyle = gradient;
+            ctx.beginPath();
+            ctx.moveTo(shift, h - shift);
+            ctx.lineTo(w - r - shift, h - shift);
+            ctx.closePath();
+            ctx.stroke();
         }
         SyntaxElementMorph.prototype.fixLayout.__blockShapesModLoaded__ = true
         if (!SyntaxElementMorph.prototype.fixLayout.__isBlockShapes__) {
@@ -212,6 +355,8 @@ return class extends Mod {
         delete ReporterBlockMorph.prototype.getBlockShape;
         delete ReporterBlockMorph.prototype.outlinePathRectangle;
         delete ReporterBlockMorph.prototype.drawEdgesRectangle;
+        delete ReporterBlockMorph.prototype.outlinePathObject;
+        delete ReporterBlockMorph.prototype.drawEdgesObject;
         SyntaxElementMorph.prototype.fixLayout.__blockShapesModLoaded__ = false
     }
 }
