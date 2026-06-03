@@ -25,7 +25,7 @@ return class extends Mod {
     ID = "snap-inspector"; // the id of the addon
     NAME = "Snap! Inspector"; // human-readable name
     DESCRIPTION = "Inspect Snap!'s internals and temporarily patch them."; // description
-    VERSION = "1.1.0"; // version
+    VERSION = "1.2.0"; // version
     AUTHOR = "PPPDUD"; // author
     DEPENDS = []; // dependencies (addon ids, useful for libraries)
     DO_MENU = true; // whether to add a menu item
@@ -64,7 +64,7 @@ return class extends Mod {
         this.menu.addItem("Edit addon code", () => {
             let new_obj = {};
             //let json_obj = JSON.parse(localStorage.getItem("crackle_autoload_mods"));
-            Object.keys(window.__crackle__.modCodes).forEach((e) => {
+            Object.keys(this.api.crackle.modCodes).forEach((e) => {
                 new_obj[e] = e;
             });
             ide.prompt(
@@ -75,14 +75,14 @@ return class extends Mod {
                         this,
                         (input) => {
                             console.log(input);
-                            window.__crackle__.modCodes[name] = input;
-                            if (name in window.__crackle__.autoloadMods) {
+                            this.api.crackle.modCodes[name] = input;
+                            if (name in this.api.crackle.autoloadMods) {
                                 add(name);
                             }
                             this.ide.inform("In order to changes to take effect, you may have to refresh this page.", "Notice");
                         },
                         this,
-                    ).promptCode("Edit addon code", window.__crackle__.modCodes[name], world);
+                    ).promptCode("Edit addon code", this.api.crackle.modCodes[name], world);
                 },
                 new_obj,
                 "",
