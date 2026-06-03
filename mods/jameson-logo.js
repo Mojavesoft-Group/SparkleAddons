@@ -45,8 +45,7 @@ return class extends Mod {
             this.logo.mouseClickLeft = oldMouseClickLeft;
             this.add(this.logo);
         }
-        this.api.ide.buildPanes();
-        this.api.ide.fixLayout();
+        this.api.requestPendingAction("refreshLogo");
     }
 
     cleanupFunc() {
