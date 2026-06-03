@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-logo";
     NAME = "Jameson Logo";
     DESCRIPTION = "Replace the Snap! logo with Jameson's logo.";
-    VERSION = "1.2.1";
+    VERSION = "1.3.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -45,8 +45,7 @@ return class extends Mod {
             this.logo.mouseClickLeft = oldMouseClickLeft;
             this.add(this.logo);
         }
-        this.api.ide.buildPanes();
-        this.api.ide.fixLayout();
+        this.api.requestPendingAction("refreshLogo");
     }
 
     cleanupFunc() {

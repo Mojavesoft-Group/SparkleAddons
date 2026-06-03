@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "custom-repos";
     NAME = "Custom Repositories";
     DESCRIPTION = "Configure a custom addon repository in Sparkle.";
-    VERSION = "1.0.0";
+    VERSION = "1.1.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -41,13 +41,13 @@ return class extends Mod {
 
     main() {
         console.log(this.options.repoURL);
-        window.__crackle__.addonRepoPath = this.options.repoURL;
+        this.api.crackle.addonRepoPath = this.options.repoURL;
         this.addEventListener("optionsChanged", () => {
-            window.__crackle__.addonRepoPath = this.options.repoURL;
+            this.api.crackle.addonRepoPath = this.options.repoURL;
         });
     };
 
     cleanupFunc() {
-        window.__crackle__.addonRepoPath = "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/";
+        this.api.crackle.addonRepoPath = "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/";
     }
 }
