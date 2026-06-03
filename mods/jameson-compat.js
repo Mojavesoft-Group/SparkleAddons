@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-compat";
     NAME = "Jameson Primitives";
     DESCRIPTION = "Extended primitives from the Jameson programming language.";
-    VERSION = "1.4.0";
+    VERSION = "1.5.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -134,35 +134,35 @@ return class extends Mod {
         SnapExtensions.primitives.set(
             "sparkle_detect()",
             function() {
-                return typeof window.__crackle__ !== 'undefined'
+                return true;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_version()",
             function() {
-                return window.__crackle__?.version ?? "";
+                return this.api.crackle?.version;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_source()",
             function() {
-                return window.__crackle__?.source ?? "";
+                return this.api.crackle?.source;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_isdev()",
             function() {
-                return window.__crackle__?.isDev ?? false;
+                return this.api.crackle?.isDev;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_addonrepo()",
             function() {
-                return window.__crackle__?.addonRepoPath ?? "";
+                return this.api.crackle?.addonRepoPath ?? "";
             },
         );
     }
