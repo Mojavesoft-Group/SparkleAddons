@@ -149,9 +149,14 @@ return class extends Mod {
             true,
         );
         this.api.wrapFunction(SliderMorph.prototype, "init", function() {
-            this.target = null; this.action = null; this.start = start;
-            this.stop = stop; this.value = value; this.size = size;
-            this.offset = null; this.button = new SliderButtonMorph();
+            this.target = null;
+            this.action = null;
+            this.start = start;
+            this.stop = stop;
+            this.value = value;
+            this.size = size;
+            this.offset = null;
+            this.button = new SliderButtonMorph();
             this.button.isDraggable = false;
             this.button.alpha = MorphicPreferences.isFlat ? 0.7 : 1;
             this.button.color = MorphicPreferences.isFlat ?
