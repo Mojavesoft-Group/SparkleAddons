@@ -21,6 +21,13 @@
         "id": "better-flat-design"
     },
     {
+        "version": "1.0.0",
+        "name": "Classic Settings Menu",
+        "description": "Patch Snap! v12's settings menu to look like the one in Snap! v11.",
+        "author": "PPPDUD, Jens Mönig",
+        "id": "classic-settings"
+    },
+    {
         "version": "1.1.0",
         "name": "Custom Repositories",
         "description": "Configure a custom addon repository in Sparkle.",
