@@ -12,9 +12,6 @@ return class extends Mod {
     main() {
         this.api.disallowSnaps("Split"); // split is a mod of snap to look like scratch, it already has better flat design
 
-        this.api.wrapFunction(InspectorMorph.prototype, "init", function() {
-            this.edge = 5;
-        });
         this.api.wrapFunction(
             DialogBoxMorph.prototype,
             "render",
@@ -152,36 +149,23 @@ return class extends Mod {
             true,
         );
         this.api.wrapFunction(SliderMorph.prototype, "init", function() {
+            this.target = null; this.action = null; this.start = start;
+            this.stop = stop; this.value = value; this.size = size;
+            this.offset = null; this.button = new SliderButtonMorph();
+            this.button.isDraggable = false;
             this.button.alpha = MorphicPreferences.isFlat ? 0.7 : 1;
             this.button.color = MorphicPreferences.isFlat ?
                 new Color(100, 100, 100) :
                 new Color(200, 200, 200);
             this.button.highlightColor = new Color(210, 210, 255);
             this.button.pressColor = new Color(180, 180, 255);
+            SliderMorph.uber.init.call(this, orientation);
+            this.add(this.button);
             this.alpha = MorphicPreferences.isFlat ? 0.08 : 0.3;
+            this.color = color || new Color(0, 0, 0);
+            this.setExtent(new Point(20, 100));
+            this.fixLayout();
         });
-        this.api.wrapFunction(MenuMorph.prototype, "createItems", function() {
-            this.edge = 5;
-        });
-        this.api.wrapFunction(
-            PushButtonMorph.prototype,
-            "drawBackground",
-            function(ctx, color) {
-                var isFlat = MorphicPreferences.isFlat && !this.is3D;
-
-                ctx.fillStyle = color.toString();
-                ctx.beginPath();
-                this.outlinePath(
-                    ctx,
-                    Math.max(this.corner - this.outline, 0),
-                    this.outline,
-                );
-                ctx.closePath();
-                ctx.fill();
-                ctx.lineWidth = this.outline;
-            },
-            true,
-        );
         this.api.wrapFunction(
             PushButtonMorph.prototype,
             "drawOutline",
@@ -212,6 +196,25 @@ return class extends Mod {
                 );
                 ctx.closePath();
                 isTransparent ? ctx.stroke() : ctx.fill();
+            },
+            true,
+        );
+        this.api.wrapFunction(
+            PushButtonMorph.prototype,
+            "drawBackground",
+            function(ctx, color) {
+                var isFlat = MorphicPreferences.isFlat && !this.is3D;
+
+                ctx.fillStyle = color.toString();
+                ctx.beginPath();
+                this.outlinePath(
+                    ctx,
+                    Math.max(this.corner - this.outline, 0),
+                    this.outline,
+                );
+                ctx.closePath();
+                ctx.fill();
+                ctx.lineWidth = this.outline;
             },
             true,
         );
