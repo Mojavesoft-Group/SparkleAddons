@@ -21,9 +21,9 @@
         "id": "better-flat-design"
     },
     {
-        "version": "1.0.0",
+        "version": "1.0.1",
         "name": "Classic Settings Menu",
-        "description": "Patch Snap! v12's settings menu to look like the one in Snap! v11.",
+        "description": "Patch Snap! v12's settings menu to look like the one in Snap! v11. Note that settings introduced in Snap! v12 are not shown in the classic settings menu.",
         "author": "PPPDUD, Jens Mönig",
         "id": "classic-settings"
     },
