@@ -23,7 +23,7 @@ return class extends Mod {
                     w = this.width(),
                     h = this.height(),
                     th = Math.floor(
-                        fontHeight(this.titleFontSize) + this.titlePadding * 2,
+                        fontHeight(this.titleFontSize) + (this.titlePadding * 2)
                     ),
                     shift = this.corner / 2,
                     x,
@@ -48,7 +48,7 @@ return class extends Mod {
                     ctx.fillStyle = gradient;
                 }
                 ctx.beginPath();
-                this.outlinePathTitle(ctx, this.corner); //isFlat ? 0 : this.corner);
+                this.outlinePathTitle(ctx, this.corner); // isFlat ? 0 : this.corner);
                 ctx.closePath();
                 ctx.fill();
 
@@ -56,7 +56,7 @@ return class extends Mod {
                 // body
                 ctx.fillStyle = this.color.toString();
                 ctx.beginPath();
-                this.outlinePathBody(ctx, this.corner); //isFlat ? 0 : this.corner);
+                this.outlinePathBody(ctx, this.corner); // isFlat ? 0 : this.corner);
                 ctx.closePath();
                 ctx.fill();
 
@@ -120,7 +120,7 @@ return class extends Mod {
                 ctx.strokeStyle = gradient;
 
                 ctx.beginPath();
-                ctx.arc(x, y, shift, radians(90), radians(0), true);
+                ctx.arc(x, y, shift, radians(90), 0, true);
                 ctx.stroke();
 
                 // left body edge
@@ -194,7 +194,7 @@ return class extends Mod {
                     return null;
                 }
                 if (false) {
-                    //this.outlineGradient && !(!this.outline || isFlat)) {
+                    // this.outlineGradient && !(!this.outline || isFlat)) {
                     outlineStyle = ctx.createLinearGradient(0, 0, 0, this.height());
                     outlineStyle.addColorStop(0, this.outlineColor.darker().toString());
                     outlineStyle.addColorStop(1, "white");
