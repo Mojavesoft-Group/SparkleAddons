@@ -3,7 +3,7 @@ return class extends Mod {
     ID = "better-flat-design"; // the id of the addon
     NAME = "Better Flat Design"; // human-readable name
     DESCRIPTION = "Makes flat design BETTER!"; // description
-    VERSION = "1.1.1"; // version
+    VERSION = "1.1.1.1"; // version
     AUTHOR = "d016"; // author
     DEPENDS = []; // dependencies (addon ids, useful for libraries)
     DO_MENU = false; // whether to add a menu item
@@ -148,7 +148,8 @@ return class extends Mod {
             },
             true,
         );
-        this.api.wrapFunction(SliderMorph.prototype, "init", function() {
+        this.api.wrapFunction(SliderMorph.prototype, "init",
+        function(start, stop, value, size, orientation, color) {
             this.target = null;
             this.action = null;
             this.start = start;
