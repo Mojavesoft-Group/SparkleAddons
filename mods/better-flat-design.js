@@ -149,29 +149,29 @@ return class extends Mod {
             true,
         );
         this.api.wrapFunction(SliderMorph.prototype, "init",
-        function(start, stop, value, size, orientation, color) {
-            this.target = null;
-            this.action = null;
-            this.start = start;
-            this.stop = stop;
-            this.value = value;
-            this.size = size;
-            this.offset = null;
-            this.button = new SliderButtonMorph();
-            this.button.isDraggable = false;
-            this.button.alpha = MorphicPreferences.isFlat ? 0.7 : 1;
-            this.button.color = MorphicPreferences.isFlat ?
-                new Color(100, 100, 100) :
-                new Color(200, 200, 200);
-            this.button.highlightColor = new Color(210, 210, 255);
-            this.button.pressColor = new Color(180, 180, 255);
-            SliderMorph.uber.init.call(this, orientation);
-            this.add(this.button);
-            this.alpha = MorphicPreferences.isFlat ? 0.08 : 0.3;
-            this.color = color || new Color(0, 0, 0);
-            this.setExtent(new Point(20, 100));
-            this.fixLayout();
-        });
+            function(start, stop, value, size, orientation, color) {
+                this.target = null;
+                this.action = null;
+                this.start = start;
+                this.stop = stop;
+                this.value = value;
+                this.size = size;
+                this.offset = null;
+                this.button = new SliderButtonMorph();
+                this.button.isDraggable = false;
+                this.button.alpha = MorphicPreferences.isFlat ? 0.7 : 1;
+                this.button.color = MorphicPreferences.isFlat ?
+                    new Color(100, 100, 100) :
+                    new Color(200, 200, 200);
+                this.button.highlightColor = new Color(210, 210, 255);
+                this.button.pressColor = new Color(180, 180, 255);
+                SliderMorph.uber.init.call(this, orientation);
+                this.add(this.button);
+                this.alpha = MorphicPreferences.isFlat ? 0.08 : 0.3;
+                this.color = color || new Color(0, 0, 0);
+                this.setExtent(new Point(20, 100));
+                this.fixLayout();
+            });
         this.api.wrapFunction(
             PushButtonMorph.prototype,
             "drawOutline",
