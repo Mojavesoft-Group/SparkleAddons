@@ -1,17 +1,10 @@
 [
     {
-        "version": "1.0.1",
-        "name": "Auto Extension Blocks",
-        "description": "Automatically enable the \"Extension blocks\" setting.",
-        "author": "d016",
-        "id": "auto-extensions"
-    },
-    {
-        "version": "1.1.0",
-        "name": "Auto JS",
-        "description": "Automatically, by default, enable JavaScript extensions.",
-        "author": "codingisfun2831",
-        "id": "auto-js"
+        "version": "1.0.0",
+        "name": "Auto Everything",
+        "description": "Automatically enable various settings.",
+        "author": "PPPDUD, codingisfun2831, d016",
+        "id": "auto-everything"
     },
     {
         "version": "1.1.1",
