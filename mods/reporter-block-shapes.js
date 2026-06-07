@@ -30,23 +30,30 @@ return class extends Mod {
         this.addEventListener("optionsChanged", (e) => {
             api.ide.rerender()
         });
-        ReporterBlockMorph.prototype.getBlockShape = function () {
+
+        ReporterBlockMorph.prototype.getRealReports = function() {
             var choice;
 
-            if (this.reports === options.squareType) return "Rectangle";
+            if ((this.selector == "getPenAttribute" || this.selector == "reportAspect")) {
+                choice = this.inputs()[0].evaluate();
+                if (choice instanceof Array && choice[0] === "color") return "color";
+            }
+
+            return this.reports;
+        };
+
+        ReporterBlockMorph.prototype.getBlockShape = function () {
+            var reports = this.getRealReports();
+
+            if (reports === options.squareType) return "Rectangle";
             if ([
                 "agent",
                 "sprite",
                 "stage",
                 "costume", // should we include costumes and sounds???
                 "sound"
-            ].includes(this.reports)) return "Object";
+            ].includes(reports)) return "Object";
             if (this.isPredicate) return "Diamond";
-            
-            if ((this.selector == "getPenAttribute" || this.selector == "reportAspect") && options.squareType === "color") {
-                choice = this.inputs()[0].evaluate();
-                if (choice instanceof Array && choice[0] === "color") return "Rectangle";
-            }
 
             return "Oval";
         }
