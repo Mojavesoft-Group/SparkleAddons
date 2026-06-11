@@ -10,7 +10,8 @@ return class extends Mod {
     NAME = "Snavanced! Icon Theme"; // human-readable name
     DESCRIPTION = "Change Snap!'s icons to look more like Snavanced!."; // description
     VERSION = "1.1.0"; // version
-    AUTHOR = "PPPDUD (feat. Alessandrito123)"; // author
+    AUTHOR = "PPPDUD"; // author
+    CONTRIBUTORS = "Alessandrito123"; // contributors
     DEPENDS = []; // dependencies (addon ids, useful for libraries)
     DO_MENU = false; // whether to add a menu item
 
