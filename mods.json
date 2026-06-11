@@ -63,10 +63,10 @@
         "id": "snap-inspector"
     },
     {
-        "version": "1.1.0",
+        "version": "1.2.0",
         "name": "Snavanced! Icon Theme",
         "description": "Change Snap!'s icons to look more like Snavanced!.",
-        "author": "PPPDUD (feat. Alessandrito123)",
+        "author": "PPPDUD",
         "id": "snavanced-icons"
     },
     {
