@@ -9,7 +9,7 @@ return class extends Mod {
     ID = "snavanced-icons"; // the id of the addon
     NAME = "Snavanced! Icon Theme"; // human-readable name
     DESCRIPTION = "Change Snap!'s icons to look more like Snavanced!."; // description
-    VERSION = "1.1.0"; // version
+    VERSION = "1.2.0"; // version
     AUTHOR = "PPPDUD"; // author
     CONTRIBUTORS = "Alessandrito123"; // contributors
     DEPENDS = []; // dependencies (addon ids, useful for libraries)
