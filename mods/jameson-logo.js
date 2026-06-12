@@ -24,11 +24,10 @@ return class extends Mod {
     ID = "jameson-logo";
     NAME = "Jameson Logo";
     DESCRIPTION = "Replace the Snap! logo with Jameson's logo.";
-    VERSION = "1.4.0";
+    VERSION = "1.4.1";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
-    f
     main() {
         this.api.disallowSnaps("Jameson");
         this.api.suggestSnaps("Snap", "JamesonNew");
