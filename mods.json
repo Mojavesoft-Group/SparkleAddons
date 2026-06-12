@@ -35,7 +35,7 @@
         "id": "jameson-compat"
     },
     {
-        "version": "1.4.0",
+        "version": "1.4.1",
         "name": "Jameson Logo",
         "description": "Replace the Snap! logo with Jameson's logo.",
         "author": "PPPDUD",
