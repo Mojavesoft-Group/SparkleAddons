@@ -28,7 +28,7 @@ return class extends Mod {
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
-f
+    f
     main() {
         this.api.disallowSnaps("Jameson");
         this.api.suggestSnaps("Snap", "JamesonNew");
