@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "custom-repos";
     NAME = "Custom Repositories";
     DESCRIPTION = "Configure a custom addon repository in Sparkle.";
-    VERSION = "1.1.0";
+    VERSION = "1.1.1";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -35,7 +35,7 @@ return class extends Mod {
             id: "repoURL",
             name: "Repository base URL",
             type: "string",
-            default: "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/",
+            default: "https://raw.githubusercontent.com/sparkle-devs/SparkleAddons/refs/heads/master/",
         },
     ];
 
@@ -48,6 +48,6 @@ return class extends Mod {
     };
 
     cleanupFunc() {
-        this.api.crackle.addonRepoPath = "https://raw.githubusercontent.com/Mojavesoft-Group/SparkleMods/refs/heads/master/";
+        this.api.crackle.addonRepoPath = "https://raw.githubusercontent.com/sparkle-devs/SparkleAddons/refs/heads/master/";
     }
 }

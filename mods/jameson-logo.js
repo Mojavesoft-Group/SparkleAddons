@@ -24,14 +24,14 @@ return class extends Mod {
     ID = "jameson-logo";
     NAME = "Jameson Logo";
     DESCRIPTION = "Replace the Snap! logo with Jameson's logo.";
-    VERSION = "1.3.0";
+    VERSION = "1.4.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
-
+f
     main() {
         this.api.disallowSnaps("Jameson");
-        this.api.suggestSnaps("Jameson", "Snap");
+        this.api.suggestSnaps("Snap", "JamesonNew");
         this.api.ide.createLogo = function() {
             let oldRenderCachedTexture = this.logo.renderCachedTexture;
             let oldMouseClickLeft = this.logo.mouseClickLeft;
