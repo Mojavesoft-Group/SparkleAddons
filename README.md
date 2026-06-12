@@ -1,8 +1,4 @@
 # Sparkle Addons
-> [!WARNING]
-> Some of Sparkle's addon APIs have recently been deprecated and their usage is no longer allowed in the SparkleAddons repository effective immediately. See sparkle-devs/sparkle#39 for more information.
-
-
 Collection of Sparkle addons, downloaded/installed by the menu in Sparkle.
 
 ## Development
