@@ -56,7 +56,7 @@ return class extends Mod {
 
         SnapExtensions.primitives.set(
             'webcrypto_hash(msg, algo)',
-            function (msg, algo, proc) {
+            function(msg, algo, proc) {
 
                 if (algo == "SHA-512") {
                     console.warn("Async SHA-512 hashes are slow! Consider using the dev menu's ([hex sha512 hash] of (txt)) block instead!");
@@ -72,10 +72,19 @@ return class extends Mod {
                 }
 
                 if (!acc) {
-                    acc = proc.context.accumulator = { done: false, result: null };
-                    digestMessage(msg, algo).then((x) => { acc.done = true; acc.result = x; }).catch((y) => {acc.done = true; acc.result = y;})
+                    acc = proc.context.accumulator = {
+                        done: false,
+                        result: null
+                    };
+                    digestMessage(msg, algo).then((x) => {
+                        acc.done = true;
+                        acc.result = x;
+                    }).catch((y) => {
+                        acc.done = true;
+                        acc.result = y;
+                    })
                 }
-                
+
                 if (acc.result) {
                     return acc.result;
                 }
