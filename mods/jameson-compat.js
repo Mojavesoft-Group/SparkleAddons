@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-compat";
     NAME = "Jameson Primitives";
     DESCRIPTION = "Extended primitives from the Jameson programming language.";
-    VERSION = "1.6.0";
+    VERSION = "1.7.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -57,6 +57,11 @@ return class extends Mod {
         SnapExtensions.primitives.set(
             'webcrypto_hash(msg, algo)',
             function (msg, algo, proc) {
+
+                if (algo == "SHA-512") {
+                    console.warn("Async SHA-512 hashes are slow! Consider using the dev menu's ([hex sha512 hash] of (txt)) block instead!");
+                }
+
                 let acc = proc.context.accumulator;
 
                 async function digestMessage(msg, algo) {
@@ -69,8 +74,9 @@ return class extends Mod {
                 if (!acc) {
                     acc = proc.context.accumulator = { done: false, result: null };
                     digestMessage(msg, algo).then((x) => { acc.done = true; acc.result = x; }).catch((y) => {acc.done = true; acc.result = y;})
-
-                } else if (acc.result) {
+                }
+                
+                if (acc.result) {
                     return acc.result;
                 }
 
