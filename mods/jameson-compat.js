@@ -24,7 +24,7 @@ return class extends Mod {
     ID = "jameson-compat";
     NAME = "Jameson Primitives";
     DESCRIPTION = "Extended primitives from the Jameson programming language.";
-    VERSION = "1.5.0";
+    VERSION = "1.6.0";
     AUTHOR = "PPPDUD";
     DEPENDS = [];
     DO_MENU = false;
@@ -35,29 +35,54 @@ return class extends Mod {
         // Jameson UUID v4 generation and WebCrypto access
         SnapExtensions.primitives.set(
             'generate_uuid()',
-            function() {
+            function () {
                 return self.crypto.randomUUID();
             }
         );
 
         SnapExtensions.primitives.set(
             'uuid_available()',
-            function() {
+            function () {
                 return Boolean(self?.crypto?.randomUUID);
             }
         );
 
         SnapExtensions.primitives.set(
             'webcrypto_available()',
-            function() {
+            function () {
                 return Boolean(self.crypto);
+            }
+        );
+
+        SnapExtensions.primitives.set(
+            'webcrypto_hash(msg, algo)',
+            function (msg, algo, proc) {
+                let acc = proc.context.accumulator;
+
+                async function digestMessage(msg, algo) {
+                    const msgUint8 = new TextEncoder().encode(msg); // encode as (utf-8) Uint8Array
+                    const hashBuffer = await window.crypto.subtle.digest(algo, msgUint8); // hash the message
+                    const hashHex = new Uint8Array(hashBuffer).toHex(); // Convert ArrayBuffer to hex string.
+                    return hashHex;
+                }
+
+                if (!acc) {
+                    acc = proc.context.accumulator = { done: false, result: null };
+                    digestMessage(msg, algo).then((x) => { acc.done = true; acc.result = x; }).catch((y) => {acc.done = true; acc.result = y;})
+
+                } else if (acc.result) {
+                    return acc.result;
+                }
+
+                proc.pushContext('doYield');
+                proc.pushContext();
             }
         );
 
         // Jameson self-inspection primitives
         SnapExtensions.primitives.set(
             'trusted_urls()',
-            function() {
+            function () {
                 return IDE_Morph.prototype.newList(SnapExtensions.urls);
             }
         );
@@ -65,14 +90,14 @@ return class extends Mod {
 
         SnapExtensions.primitives.set(
             'get_primitive_code(name)',
-            function(name) {
+            function (name) {
                 return SnapExtensions.primitives.get(name).toString();
             }
         );
 
         SnapExtensions.primitives.set(
             'all_primitives()',
-            function() {
+            function () {
                 let my_primitives = Object.fromEntries(SnapExtensions.primitives);
                 return IDE_Morph.prototype.newList(Object.getOwnPropertyNames(my_primitives));
             }
@@ -81,11 +106,11 @@ return class extends Mod {
         // Jameson WebSocket support; not compatible with Snap! 12's upcoming WebSocket library
         SnapExtensions.primitives.set(
             'websocket_connect(url)',
-            function(url) {
+            function (url) {
                 let newWebSocket = new WebSocket(url);
                 newWebSocket.jamesonLastMsg = "";
                 newWebSocket.jamesonMsgChecked = true;
-                newWebSocket.onmessage = function(event) {
+                newWebSocket.onmessage = function (event) {
                     this.jamesonLastMsg = event.data;
                     this.jamesonMsgChecked = false;
                 };
@@ -95,7 +120,7 @@ return class extends Mod {
 
         SnapExtensions.primitives.set(
             'websocket_close(obj, code)',
-            function(obj, code) {
+            function (obj, code) {
                 obj.close(code);
                 console.log("closed")
             }
@@ -103,21 +128,21 @@ return class extends Mod {
 
         SnapExtensions.primitives.set(
             'websocket_state(obj)',
-            function(obj) {
+            function (obj) {
                 return obj.readyState;
             }
         );
 
         SnapExtensions.primitives.set(
             'websocket_send(obj, data)',
-            function(obj, data) {
+            function (obj, data) {
                 obj.send(data);
             }
         );
 
         SnapExtensions.primitives.set(
             'websocket_lastmsg(obj)',
-            function(obj, data) {
+            function (obj, data) {
                 obj.jamesonMsgChecked = true;
                 return obj.jamesonLastMsg;
             }
@@ -125,7 +150,7 @@ return class extends Mod {
 
         SnapExtensions.primitives.set(
             'websocket_msgchecked(obj)',
-            function(obj, data) {
+            function (obj, data) {
                 return obj.jamesonMsgChecked;
             }
         );
@@ -133,35 +158,35 @@ return class extends Mod {
         // Jameson-specific APIs for detecting Sparkle
         SnapExtensions.primitives.set(
             "sparkle_detect()",
-            function() {
+            function () {
                 return true;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_version()",
-            function() {
+            function () {
                 return this.api.crackle?.version;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_source()",
-            function() {
+            function () {
                 return this.api.crackle?.source;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_isdev()",
-            function() {
+            function () {
                 return this.api.crackle?.isDev;
             },
         );
 
         SnapExtensions.primitives.set(
             "sparkle_addonrepo()",
-            function() {
+            function () {
                 return this.api.crackle?.addonRepoPath ?? "";
             },
         );
