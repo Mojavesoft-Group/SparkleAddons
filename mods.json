@@ -28,7 +28,7 @@
         "id": "custom-repos"
     },
     {
-        "version": "1.5.0",
+        "version": "1.6.0",
         "name": "Jameson Primitives",
         "description": "Extended primitives from the Jameson programming language.",
         "author": "PPPDUD",
