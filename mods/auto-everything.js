@@ -1,4 +1,4 @@
-return class extends Mod {
+return class extends Mod { 
     ID = "auto-everything";
     NAME = "Auto Everything";
     DESCRIPTION = "Automatically enable various settings.";
