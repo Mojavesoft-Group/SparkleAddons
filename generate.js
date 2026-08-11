@@ -27,7 +27,7 @@ const path = require('path');
 
 
 const modsDir = path.join(__dirname, 'mods');
-const extraDir = path.join(__dirname, 'extra');
+//const extraDir = path.join(__dirname, 'extra');
 const outputFile = path.join(__dirname, 'mods.json');
 
 const mods = [];
@@ -55,9 +55,9 @@ files.forEach(file => {
         };
         mods.push(modJSON);
 
-        console.warn(path.join(extraDir, mod.ID));
+        //console.warn(path.join(extraDir, mod.ID));
         // see if there is a extra folder, and if so whats in it
-        const extraPath = path.join(extraDir, mod.ID)
+        /*const extraPath = path.join(extraDir, mod.ID)
         if (fs.existsSync(extraPath)) {
             const extra = fs.readdirSync(extraPath);
 
@@ -73,6 +73,8 @@ files.forEach(file => {
         } else {
             mod.extra = null;
         }
+        */
+        
 
 
 
